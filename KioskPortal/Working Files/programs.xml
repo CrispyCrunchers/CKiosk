@@ -1,0 +1,17 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+    <Apps>
+	  <App>
+		  <Group>Internet</Group>
+		  <Name>Apparel Website</Name>
+		  <ExecPath>C:\Program Files (x86)\Google\Chrome\Application\chrome.exe</ExecPath>
+		  <Arguments></Arguments>
+	  </App>
+	  <App>
+		  <Group>Internet</Group>
+		  <Name>Apparel Website</Name>
+		  <ExecPath>C:\Program Files (x86)\Google\Chrome\Application\chrome.exe</ExecPath>
+		  <Arguments></Arguments>
+	  </App>	  
+	</Apps>
+</DocumentElement>

@@ -1,0 +1,58 @@
+<?xml version="1.0" standalone="yes"?>
+
+<!-- This config will override the GroupConfig file settings -->
+<DeviceConfig>
+  <!-- Required -->
+  <RemoteGroupConfigFileName>\\Fileserver\Share\KioskPortal\GroupConfig\EmployeeKiosks.xml</RemoteGroupConfigFileName>
+
+  <!-- Optional -->
+  <!-- Comment out options to set them as not configured. -->
+  <!-- They will fall through to group config -->
+  <!-- If you enable them, they must be set -->
+  <!-- Bool: 1=True, 0=False -->
+  
+  <!-- string -->
+  <!--<HeaderText></HeaderText>-->	
+  
+  <!-- bool -->
+  <!--<EnableCmd>1</EnableCmd>-->
+  
+  <!-- bool -->
+  <!--<EnableNetworkConfig>1</EnableNetworkConfig>-->
+  
+  <!-- bool -->
+  <!--<EnablePrinterConfig>1</EnablePrinterConfig>-->
+  
+  <!-- bool -->
+  <!-- <EnableRun>1</EnableRun> -->
+  
+  <!-- bool -->
+  <!-- <EnableTaskManager>1</EnableTaskManager> -->
+  
+  <!-- bool -->
+  <!-- <EnableExplorer>1</EnableExplorer> -->
+
+  <!-- bool -->
+  <!-- <EnableQuit>1</EnableQuit> -->
+  
+  <!-- bool -->
+  <!--<EnableRestart>1</EnableRestart>-->
+  
+  <!-- bool -->
+  <!--<EnableShutdown>1</EnableShutdown>-->
+  
+  <!-- Apps (Optional) -->
+  <?ignore
+  <Apps>
+	  <App>
+		<Group>Productivity</Group>
+		<Name>Microsoft Teams</Name>
+		<ExecPath>%LOCALAPPDATA%\Microsoft\Teams\Update.exe</ExecPath>
+		<Arguments><![CDATA[--processStart "Teams.exe"]]></Arguments>
+		<ImageIndex>0</ImageIndex>
+		<AutoLaunch>0</AutoLaunch>
+	  </App>
+  </Apps>
+  ?>
+  
+</DeviceConfig>

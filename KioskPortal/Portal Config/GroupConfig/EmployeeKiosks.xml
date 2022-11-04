@@ -1,0 +1,99 @@
+<?xml version="1.0" standalone="yes"?>
+<GroupConfig>
+  <!-- Required -->
+  <Name>Company Employee Kiosk</Name>
+  
+  <!-- Optional only if not specified in the DeviceConfig -->
+  <HeaderText>Company Employee Kiosk</HeaderText>
+  
+  <!-- Optional -->
+  <!-- Comment out options to set them as not configured. -->
+  <!-- They will be set to their defaults if not set in the DeviceConfig -->
+  <!-- bool: 1=True, 0=False -->
+
+  <!-- string, must be a valid hex code, with or without the leading # -->
+  <HeaderTextColorRgb>#22BBEE</HeaderTextColorRgb>
+  <!-- bool -->
+  <EnableCmd>0</EnableCmd>
+  <!-- bool -->
+  <EnableNetworkConfig>0</EnableNetworkConfig>
+  <!-- bool -->
+  <EnablePrinterConfig>0</EnablePrinterConfig>
+  <!-- bool -->
+  <EnableRun>0</EnableRun>
+  <!-- bool -->
+  <EnableTaskManager>0</EnableTaskManager>
+  <!-- bool -->
+  <EnableExplorer>0</EnableExplorer>
+  <!-- bool -->
+  <EnableQuit>0</EnableQuit>
+  <!-- bool -->
+  <EnableRestart>1</EnableRestart>
+  <!-- bool -->
+  <EnableShutdown>1</EnableShutdown>
+
+  <!-- Apps - Reqiured -->
+  <Apps>
+  	  <App>
+		<Group>Company Intranet</Group>
+		<Name>Intranet Home</Name>
+		<ExecPath>C:\Program Files (x86)\Google\Chrome\Application\chrome.exe</ExecPath>
+		<Arguments><![CDATA[--start-maximized --incognito --app=https://www.company.com]]></Arguments>
+		<ImageIndex>0</ImageIndex>
+		<AutoLaunch>1</AutoLaunch>
+	  </App>
+	  <App>
+		<Group>Internet</Group>
+		<Name>Gmail</Name>
+		<ExecPath>C:\Program Files (x86)\Google\Chrome\Application\chrome.exe</ExecPath>
+		<Arguments><![CDATA[--start-maximized --incognito --app=https://www.gmail.com]]></Arguments>
+		<ImageIndex>0</ImageIndex>
+		<AutoLaunch>0</AutoLaunch>
+	  </App>
+	  <App>
+		<Group>Internet</Group>
+		<Name>Gmail Signup</Name>
+		<ExecPath>C:\Program Files (x86)\Google\Chrome\Application\chrome.exe</ExecPath>
+		<Arguments><![CDATA[--start-maximized --incognito --app=https://accounts.google.com/signup/v2/webcreateaccount?service=mail&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&ltmpl=default&gmb=exp&biz=false&flowName=GlifWebSignIn&flowEntry=SignUp]]></Arguments>
+		<ImageIndex>0</ImageIndex>
+		<AutoLaunch>0</AutoLaunch>
+	  </App>
+	  <App>
+		<Group>Internet</Group>
+		<Name>Gmail Signup (Spanish)</Name>
+		<ExecPath>C:\Program Files (x86)\Google\Chrome\Application\chrome.exe</ExecPath>
+		<Arguments><![CDATA[--start-maximized --incognito --app=https://accounts.google.com/signup/v2/webcreateaccount?service=mail&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&ltmpl=default&gmb=exp&biz=false&hl=es-419&flowName=GlifWebSignIn&flowEntry=SignUp]]></Arguments>
+		<ImageIndex>0</ImageIndex>
+		<AutoLaunch>0</AutoLaunch>
+	  </App>
+
+	  
+	  
+	  <!--
+	  <App>
+		<Group>Admin Utilities - Authorized Use Only</Group>
+		<Name>Windows Explorer</Name>
+		<ExecPath>C:\Windows\explorer.exe</ExecPath>
+		<Arguments></Arguments>
+		<ImageIndex>1</ImageIndex>
+		<AutoLaunch>0</AutoLaunch>
+	  </App>
+	  <App>
+		<Group>Admin Utilities - Authorized Use Only</Group>
+		<Name>Powershell</Name>
+		<ExecPath>C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe</ExecPath>
+		<Arguments></Arguments>
+		<ImageIndex>1</ImageIndex>
+		<AutoLaunch>0</AutoLaunch>
+	  </App>
+	  <App>
+		<Group>Admin Utilities - Authorized Use Only</Group>
+		<Name>GPUpdate</Name>
+		<ExecPath>C:\Windows\System32\gpupdate.exe</ExecPath>
+		<Arguments></Arguments>
+		<ImageIndex>1</ImageIndex>
+		<AutoLaunch>0</AutoLaunch>
+	  </App>
+	  -->
+	</Apps>
+</GroupConfig>
