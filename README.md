@@ -32,3 +32,75 @@ There are also some predefined 'admin' functions on the bottom right menu that c
 The app will also prevent closing and will supress task manager.  
 
 You can set the refresh interval in seconds and the app will attempt to redownload the config files and reload the app listing each interval.  This is in case the kiosk doesn't get restarted often, it will get config changes.
+
+## Configuration
+
+### Device Config Specific
+XML root node:
+```xml
+<DeviceConfig>
+</DeviceConfig>
+```
+
+The additional config item for the device config is
+`<RemoteGroupConfigFileName>\\Fileserver\Share\KioskPortal\GroupConfig\EmployeeKiosks.xml</RemoteGroupConfigFileName>`
+
+### Group Config Specific
+XML root node:
+```xml
+<GroupConfig>
+</GroupConfig>
+```
+
+### Config entries for either Device or Group config
+
+#### Kiosk Portal Admin config
+```xml
+  <!-- Comment out options to set them as not configured. -->
+  <!-- If you enable them, they must be set -->
+  <!-- Bool: 1=True, 0=False -->
+  
+  <!-- string -->
+  <!--<HeaderText></HeaderText>-->	
+  
+  <!-- bool -->
+  <!--<EnableCmd>1</EnableCmd>-->
+  
+  <!-- bool -->
+  <!--<EnableNetworkConfig>1</EnableNetworkConfig>-->
+  
+  <!-- bool -->
+  <!--<EnablePrinterConfig>1</EnablePrinterConfig>-->
+  
+  <!-- bool -->
+  <!-- <EnableRun>1</EnableRun> -->
+  
+  <!-- bool -->
+  <!-- <EnableTaskManager>1</EnableTaskManager> -->
+  
+  <!-- bool -->
+  <!-- <EnableExplorer>1</EnableExplorer> -->
+
+  <!-- bool -->
+  <!-- <EnableQuit>1</EnableQuit> -->
+  
+  <!-- bool -->
+  <!--<EnableRestart>1</EnableRestart>-->
+  
+  <!-- bool -->
+  <!--<EnableShutdown>1</EnableShutdown>-->
+```
+
+#### Kisok Portal App listing
+```xml
+  <Apps>
+	  <App>
+		<Group>Productivity</Group>
+		<Name>Microsoft Teams</Name>
+		<ExecPath>%LOCALAPPDATA%\Microsoft\Teams\Update.exe</ExecPath>
+		<Arguments><![CDATA[--processStart "Teams.exe"]]></Arguments>
+		<ImageIndex>0</ImageIndex>
+		<AutoLaunch>0</AutoLaunch>
+	  </App>
+  </Apps>
+```
