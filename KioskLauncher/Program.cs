@@ -13,7 +13,7 @@ namespace CC.Apps.CKiosk.Launcher
 
             // File Copy
             // Attempt updating the CKiosk app, if we are set to
-            if (ApplicationConfig.AttemptRemoteUpdate)
+            if (!File.Exists(ApplicationConfig.LocalKioskPortalExec) || ApplicationConfig.AttemptRemoteUpdate)
             {
                 // This simply means copying down the latest release (binary & config) from the remote server
                 try

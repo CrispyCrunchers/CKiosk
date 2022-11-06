@@ -27,10 +27,9 @@ namespace CC.Apps.CKiosk.Config
         public AppManager AppManager { get; private set; } = new AppManager();
 
         // Config Paths
-        public string RemoteConfigPath { get; private set; }
-        public string RemoteConfigFileName { get; private set; }
+        public string RemoteConfigFilename { get; private set; }
         public string LocalConfigPath { get; private set; }
-        public string LocalConfigFileName { get; private set; }
+        public string LocalDeviceConfigFileName { get; private set; }
         public string LocalGroupConfigFileName { get; private set; }
 
         // AttemptRemoteFileCopy
@@ -72,10 +71,11 @@ namespace CC.Apps.CKiosk.Config
         public ApplicationConfig()
         {
             // Set paths
-            RemoteConfigPath = ConfigurationManager.AppSettings["RemoteConfigPath"];
-            RemoteConfigFileName = RemoteConfigPath + @"\" + this.Hostname + @".xml";
+            RemoteConfigFilename = ConfigurationManager.AppSettings["RemoteConfigFilename"];
+            RemoteConfigFilename = RemoteConfigFilename.ToLower().Replace("[hostname]", this.Hostname);
+
             LocalConfigPath = Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + @"\" + Name;
-            LocalConfigFileName = LocalConfigPath + @"\DeviceConfig.xml";
+            LocalDeviceConfigFileName = LocalConfigPath + @"\DeviceConfig.xml";
             LocalGroupConfigFileName = LocalConfigPath + @"\GroupConfig.xml";
 
             AttemptRemoteFileCopy = bool.TryParse(ConfigurationManager.AppSettings["AttemptRemoteFileCopy"], out bool _AttemptRemoteFileCopy) ? _AttemptRemoteFileCopy : true;
@@ -112,14 +112,14 @@ namespace CC.Apps.CKiosk.Config
         private void DownloadAndParseConfigs()
         {
 
-            // Attempt to download computer specific config
-
-            if (AttemptRemoteFileCopy)
+            // Attempt to copy computer specific config
+            // Force download if file not found.
+            if (AttemptRemoteFileCopy || !File.Exists(LocalDeviceConfigFileName))
             {
                 try
                 {
                     Directory.CreateDirectory(LocalConfigPath);
-                    File.Copy(RemoteConfigFileName, LocalConfigFileName, true);
+                    File.Copy(RemoteConfigFilename, LocalDeviceConfigFileName, true);
                 }
                 catch (Exception ex)
                 {
@@ -132,7 +132,7 @@ namespace CC.Apps.CKiosk.Config
 
 
             // Device Config
-            if (!File.Exists(LocalConfigFileName))
+            if (!File.Exists(LocalDeviceConfigFileName))
             {
                 throw new Exception("No DeviceConfig file found.  Please contact IT.");
             }
@@ -140,7 +140,7 @@ namespace CC.Apps.CKiosk.Config
             try
             {
                 // Read in XML
-                string _DeviceConfigXml = File.ReadAllText(LocalConfigFileName);
+                string _DeviceConfigXml = File.ReadAllText(LocalDeviceConfigFileName);
                 DeviceConfig = XmlConvert.DeserializeObject<DeviceConfig>(_DeviceConfigXml);
             }
             catch (Exception ex)
@@ -152,7 +152,8 @@ namespace CC.Apps.CKiosk.Config
             // Group Config
 
             // Attempt to download new XML.  Revert to local if one cannot be downloaded.
-            if (AttemptRemoteFileCopy == true)
+            // Force download if file not found.
+            if (AttemptRemoteFileCopy || !File.Exists(LocalGroupConfigFileName))
             {
                 try
                 {
@@ -189,6 +190,8 @@ namespace CC.Apps.CKiosk.Config
         private void SetParametersFromConfig()
         {
 
+            // When setting parameters,
+            // prefer the device config, then the group config
             HeaderText = !string.IsNullOrEmpty(DeviceConfig.HeaderText) ? DeviceConfig.HeaderText : !string.IsNullOrEmpty(GroupConfig.HeaderText) ? GroupConfig.HeaderText : "Public Kiosk";
 
             // Cmd
